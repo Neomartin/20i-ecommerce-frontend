@@ -1,4 +1,13 @@
 body {
   margin: 0;
-  font-family: BlinkMacSystemFont, 'Segoe UI'
+  font-family: BlinkMacSystemFont, 'Segoe UI';
+  min-height: 100vh;
+}
+
+.full-height {
+  min-height: calc(100vh - 142px);
+}
+
+.text-red {
+  color: red;
 }

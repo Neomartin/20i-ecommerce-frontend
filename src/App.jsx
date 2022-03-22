@@ -1,25 +1,31 @@
 import React from 'react';
 import { Layout } from 'antd';
 import { Home } from './pages/Home/Home';
-const { Header, Footer, Sider, Content } = Layout;
+import { Header } from './shared/Header/Header'
+import { Sidebar } from './shared/Sidebar/Sidebar';
+import { Products } from './pages/Products/Products';
+import { ProductsFromDB } from './constants/productsFromDB';
+
+const { Footer, Sider, Content } = Layout;
+
 
 export const App = () => {
-    // const user = {
-    //     fullName: 'John Doe',
-    //     role: 'ADMIN_ROLE'
-    // }
-    // localStorage.setItem('user', JSON.stringify(user))
-    const user = JSON.parse(localStorage.getItem('user')) || { fullName: 'Unknown', role: 'GUEST_ROLE'};
-    const anotherInfo = 'Cualquier otra cosa'
+    const user = JSON.parse(localStorage.getItem('user')) || {};
+    const anotherInfo = 'Cualquier otra cosa';
+    const products = ProductsFromDB;
     return (
         <>
             <Layout>
-               <Header>HEADER COMPONENT</Header>
-               <Layout>
-                    <Sider>SIDER</Sider>
+               <Header user={user} age={user.age} role={user.role} adress={user.adress} city={user.city} />
+               <Layout className="full-height">
+
+                   <Sider>
+                    <Sidebar  user={user} />
+                   </Sider>
+
                     <Content>
-                        <Home 
-                            usuario={user}></Home>
+                        <Home other={anotherInfo} usuario={user}></Home>
+                        <Products productsDB={products}/>
                     </Content>
                </Layout>
                <Footer>FOOTER</Footer> 
