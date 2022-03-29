@@ -9,20 +9,16 @@ const newProduct = {
   price: 500,
   quantity: 15,
   stock: true,
-  _id:"algo"
+  _id: "algo"
 }
 
 export const Products = () => {
   const [products, productsState] = useState(ProductsFromDB)
 
-
-// console.log(productsState)
-
-//   const updateProducts = (nuevoProducto) => {
-//     const newArray = [...products]
-//     newArray.push(newProduct)
-//     productsState(newArray)
-//   }
+  const updateProducts = (nuevoProducto) => {
+    const newArray = [...products, newProduct]
+    productsState(newArray)
+  }
 
   const deleteProduct = (id) => {
     const newArray = products.filter(prod => prod._id !== id)
@@ -31,11 +27,11 @@ export const Products = () => {
 
   return (
     <div>
-        <Typography.Title level={1}>Products</Typography.Title>
-        
-        <ProductsAdd />
-        <ProductList productsDBToList={products} deleteProduct={deleteProduct}/>
-        {/* <button onClick={updateProducts}>Añadir</button> */}
+      <Typography.Title level={1}>Products</Typography.Title>
+
+      <ProductsAdd />
+      <ProductList productsDBToList={products} deleteProduct={deleteProduct} />
+      <button onClick={() => updateProducts()}>Añadir</button>
     </div>
   )
 }

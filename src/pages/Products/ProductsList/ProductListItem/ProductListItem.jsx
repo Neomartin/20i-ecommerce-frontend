@@ -4,6 +4,9 @@ import React from 'react'
 import './ProductListItem.scss';
 
 export const ProductListItem = ({product, deleteProduct}) => {
+  const  handleDeleteItem = (id)=> {
+    deleteProduct(id)
+  }
   return (
     <li className='custom-li'>
         <div className='description'>
@@ -29,7 +32,7 @@ export const ProductListItem = ({product, deleteProduct}) => {
         </div>
         <div className="actions">
             <Space size="small">
-                <Button className='fit-button' type="primary" danger onClick={deleteProduct(product._id)}>
+                <Button className='fit-button' type="primary" danger onClick={() => handleDeleteItem(product._id)}>
                     <DeleteOutlined />
                 </Button>
                 <Button className='fit-button' type="primary">
