@@ -3,20 +3,24 @@ import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import '../../../shared/shared.scss';
-const URL = 'http://localhost:3000/api'
+
+
+
+
 export function ProductsAdd() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = async (data) => {
-    const first = await fetch(`${URL}/product`, { 
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    });
-    // const dataOne = await axios.post(`${URL}/product`, { data })
-    const newProductFromDB = await first.json();
-    console.log('newProductFromDB', newProductFromDB)
+    // const first = await fetch(`${URL}/product`, { 
+    //   method: 'POST',
+    //   body: JSON.stringify(data),
+    //   headers:{
+    //     'Content-Type': 'application/json'
+    //   }
+    // });
+    
+    // const newProductFromDB = await first.json();
+
+    // console.log('newProductFromDB', newProductFromDB); 
   };
   console.log(errors);
 
