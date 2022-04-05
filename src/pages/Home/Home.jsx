@@ -4,7 +4,7 @@ export const Home = ({usuario, other}) => {
 
   return (
     <>
-        <h1>Bienvenido {usuario.fullName}</h1>
+        <h1>Bienvenido al Home</h1>
     </>
   )
 }

@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.scss';
 import { App } from './App';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
+  </BrowserRouter>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
