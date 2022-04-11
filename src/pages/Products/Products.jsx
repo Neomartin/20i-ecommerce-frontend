@@ -6,6 +6,7 @@ import { ProductsAdd } from './ProductsAdd/ProductsAdd'
 import { ProductsAddAntd } from './ProductsAdd/ProductsAddAntd'
 import { ProductList } from './ProductsList/ProductList'
 import { URL } from '../../constants/config'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
 
 
 export const Products = () => {
@@ -58,9 +59,13 @@ export const Products = () => {
       const total = response.data.total
       productsState(productsDB);
       totalProductsUpdate(total);
-      setDialogMessage(`Se obtuvieron un total de ${total} productos`);
-      setDialogTitle('PRODUCTOS OBTENIDOS')
-      toggleActionDialog(true)
+      Modal.confirm({
+        title: 'Confirm',
+        icon: <ExclamationCircleOutlined />,
+        content: `Se obtuvieron un total de ${total} productos`,
+        okText: 'Ok',
+        
+      });
     } catch (error) {
       console.log(error.response.data.msg)
     }
@@ -75,7 +80,7 @@ export const Products = () => {
         <Typography.Title level={1}>Products</Typography.Title>
         <ProductsAddAntd addProduct={addProduct} />
         {/* <ProductsAdd /> */}
-        <h1>PRODUCTOS ENCONTRADOS: {totalProducts}</h1>
+        <h1 className='text-alert'>PRODUCTOS ENCONTRADOS: {totalProducts}</h1>
         <ProductList productsDBToList={products} deleteProduct={deleteProduct} />
       </div>
       <Modal title={dialogTitle} visible={actionDialog} onOk={hiddeModal} onCancel={hiddeModal}>

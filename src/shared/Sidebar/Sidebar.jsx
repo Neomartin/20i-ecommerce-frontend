@@ -1,9 +1,11 @@
-import { ContainerOutlined, DesktopOutlined, HomeOutlined, LoginOutlined } from '@ant-design/icons'
+import { ContainerOutlined, DesktopOutlined, HomeOutlined, LoginOutlined, LogoutOutlined } from '@ant-design/icons'
 import { Menu } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../auth/useAuth'
 
 export const Sidebar = () => {
+  const auth = useAuth()
   return (
     <div>
       {/* <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
@@ -16,15 +18,23 @@ export const Sidebar = () => {
         theme="dark"
       //   inlineCollapsed={this.state.collapsed}
       >
-        <Menu.Item key="0" icon={<LoginOutlined />}>
-          <Link to="/login"> Login </Link>
-        </Menu.Item>
         <Menu.Item key="1" icon={<HomeOutlined />}>
-          <Link to="/"> Home </Link>
+          <Link to="/home"> Home </Link>
         </Menu.Item>
-        <Menu.Item key="2" icon={<DesktopOutlined />}>
-          <Link to="/product"> Product </Link>
-        </Menu.Item>
+        {
+          auth.user ? 
+          <Menu.Item key="0" icon={<LogoutOutlined />} onClick={auth.logout}>
+            <Link to="/login"> Logout </Link>
+          </Menu.Item> : null
+        }
+        
+        {
+          auth.user.role === 'ADMIN_ROLE' ?
+            <Menu.Item key="2" icon={<DesktopOutlined />}>
+              <Link to="/product"> Product </Link>
+            </Menu.Item> : null
+
+        }
         <Menu.Item key="3" icon={<DesktopOutlined />}>
           Orders List
         </Menu.Item>

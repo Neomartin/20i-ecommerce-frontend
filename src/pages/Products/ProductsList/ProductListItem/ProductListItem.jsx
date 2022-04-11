@@ -1,11 +1,22 @@
 import { CheckOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
+import axios from 'axios';
 import React from 'react'
+import { useAuth } from '../../../../auth/useAuth';
 import './ProductListItem.scss';
+import { URL } from '../../../../constants/config';
 
 export const ProductListItem = ({product, deleteProduct}) => {
+    const auth = useAuth();
   const  handleDeleteItem = (id)=> {
     deleteProduct(id)
+  }
+
+  const handleActiveUser = async({_id, active}) => {
+    console.log(active)
+    active = !active
+    const updatedUser = await axios.put(`${URL}/product/${_id}`, { active });
+    console.log('updatedUser', updatedUser.data)
   }
   return (
     <li className='custom-li'>
@@ -35,7 +46,7 @@ export const ProductListItem = ({product, deleteProduct}) => {
                 <Button className='fit-button' type="primary" danger onClick={() => handleDeleteItem(product._id)}>
                     <DeleteOutlined />
                 </Button>
-                <Button className='fit-button' type="primary">
+                <Button className='fit-button' type="primary" onClick={() => handleActiveUser(product)}>
                     <CheckOutlined />
                 </Button>
             </Space>
