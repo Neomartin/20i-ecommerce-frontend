@@ -7,7 +7,6 @@ import './ProductListItem.scss';
 import { URL } from '../../../../constants/config';
 
 export const ProductListItem = ({product, deleteProduct}) => {
-    const auth = useAuth();
   const  handleDeleteItem = (id)=> {
     deleteProduct(id)
   }

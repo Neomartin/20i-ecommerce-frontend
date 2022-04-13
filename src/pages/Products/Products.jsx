@@ -7,6 +7,7 @@ import { ProductsAddAntd } from './ProductsAdd/ProductsAddAntd'
 import { ProductList } from './ProductsList/ProductList'
 import { URL } from '../../constants/config'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
+import { ProductListAntd } from './ProductListAntd/ProductListAntd'
 
 
 export const Products = () => {
@@ -86,6 +87,7 @@ export const Products = () => {
       <Modal title={dialogTitle} visible={actionDialog} onOk={hiddeModal} onCancel={hiddeModal}>
         {dialogMessage}
       </Modal>
+      <ProductListAntd products={products}></ProductListAntd>
     </>
 
   )
